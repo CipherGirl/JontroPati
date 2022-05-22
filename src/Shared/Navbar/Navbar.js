@@ -6,6 +6,9 @@ import { ReactComponent as Moon } from '../../Assets/moon.svg';
 import { ReactComponent as Bars } from '../../Assets/bars.svg';
 import { ReactComponent as Cross } from '../../Assets/cross.svg';
 import { useOutsideClicker } from '../../hooks/useOutsideClicker';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import auth from '../../firebase.init';
 
 const menuItems = (
   <>
@@ -65,6 +68,10 @@ const Navbar = () => {
   const wrapperRef = useRef(null);
   useOutsideClicker(wrapperRef, setIsOpen);
 
+  //const [user] = useAuthState(auth);
+
+  const logout = () => {};
+
   return (
     <div ref={wrapperRef} className="container-lg">
       <nav className="">
@@ -102,6 +109,12 @@ const Navbar = () => {
                 >
                   {dark ? <Sun /> : <Moon />}
                 </ActionIcon>
+                <NavLink
+                  to="/login"
+                  className={' font-semibold text-orange-500 px-3 py-3'}
+                >
+                  Login/Signup
+                </NavLink>
               </div>
             </div>
 
@@ -150,8 +163,13 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
       >
         {dark ? <Sun /> : <Moon />}
       </ActionIcon>
-
       {menuItems}
+      <NavLink
+        to="/login"
+        className={' font-semibold text-orange-500 px-3 py-3'}
+      >
+        Login/Signup
+      </NavLink>
     </div>
   );
 };

@@ -1,8 +1,10 @@
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
+import SignUp from './Pages/Login/Signup';
 import Footer from './Shared/Footer/Footer';
 import Navbar from './Shared/Navbar/Navbar';
 
@@ -10,6 +12,9 @@ function App() {
   const [colorScheme, setColorScheme] = useState('light');
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
+  const location = useLocation();
+
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -28,8 +33,11 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
-          <Footer />
+          {location.pathname !== '/login' &&
+            location.pathname !== '/signup' && <Footer />}
         </div>
       </MantineProvider>
     </ColorSchemeProvider>
