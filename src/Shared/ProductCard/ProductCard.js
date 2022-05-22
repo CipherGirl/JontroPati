@@ -28,7 +28,7 @@ const ProductCard = () => {
     theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <Card shadow="sm" p="lg">
+    <Card shadow="xl" p="lg">
       <Card.Section>
         <Image
           src={image}
@@ -50,7 +50,7 @@ const ProductCard = () => {
         <Text weight={600} size="xl" mt="xl">
           {title}
         </Text>
-        <Badge size="lg" color="green" variant="light">
+        <Badge variant="gradient" gradient={{ from: 'green', to: 'cyan' }}>
           New
         </Badge>
       </Group>
@@ -61,7 +61,7 @@ const ProductCard = () => {
         <Text size="md">
           Price per unit: <strong>{price}</strong>
         </Text>
-        <Text size="md">Minimu Order: {minOrder}</Text>
+        <Text size="md">Minimum Order: {minOrder}</Text>
         <Text size="md">quantity: {quantity}</Text>
       </Group>
 
@@ -70,8 +70,8 @@ const ProductCard = () => {
       </Text>
 
       <Button
-        variant="light"
-        color="blue"
+        variant="gradient"
+        gradient={{ from: 'indigo', to: 'cyan' }}
         fullWidth
         style={{ marginTop: 14 }}
         onClick={() => navigate('/purchase')}

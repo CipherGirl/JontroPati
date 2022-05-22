@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Banner = () => {
   return (
-    <section class="max-w-7xl flex flex-col md:flex-row items-center mx-auto px-4 sm:px-0">
+    <section class="max-w-7xl flex flex-col md:flex-row items-center px-2">
       <div class="flex flex-col md:flex-1 items-center md:items-start p-4 ">
         <Highlight
           style={{ fontSize: '4rem' }}
