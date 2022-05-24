@@ -3,16 +3,16 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
+import AddReview from './Pages/Dashboard/AddReview';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Orders from './Pages/Dashboard/Orders';
+import Profile from './Pages/Dashboard/Profile';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
+import RequireAuth from './Pages/Login/RequireAuth';
 import SignUp from './Pages/Login/Signup';
 import Footer from './Shared/Footer/Footer';
 import Navbar from './Shared/Navbar/Navbar';
-import Dashboard from './Pages/Dashboard/Dashboard';
-import RequireAuth from './Pages/Login/RequireAuth';
-import Orders from './Pages/Orders/Orders';
-import AddReview from './Pages/AddReview/AddReview';
-import Profile from './Pages/Profile/Profile';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('light');
@@ -50,7 +50,7 @@ function App() {
                   </RequireAuth>
                 }
               >
-                <Route index element={<Orders />} />{' '}
+                <Route index element={<Orders />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="addreview" element={<AddReview />} />
               </Route>
