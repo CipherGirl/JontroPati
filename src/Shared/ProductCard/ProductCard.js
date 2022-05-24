@@ -45,31 +45,23 @@ const ProductCard = (props) => {
           style={{
             height: '250px',
             width: '250px',
-            objectFit: 'contain',
+            objectFit: 'cover',
             margin: 'auto',
             padding: '20px 0px',
           }}
         />
       </Card.Section>
 
-      <Group
-        position="apart"
-        style={{ marginBottom: 5, marginTop: theme.spacing.xl }}
-      >
-        <Text weight={600} size="sm" mt="xl">
-          {name}
-        </Text>
-        <Badge variant="gradient" gradient={{ from: 'green', to: 'cyan' }}>
-          New
-        </Badge>
-      </Group>
+      <Text weight={600} size="md" className="truncate">
+        {name}
+      </Text>
 
       <Text size="md">
         Price per unit: <strong>{price}</strong>
       </Text>
       <Text size="md">Minimum Order: {minimumOrder}</Text>
       <Text size="md">quantity: {quantity}</Text>
-      <ScrollArea style={{ height: 80, marginTop: 20 }}>
+      <ScrollArea style={{ height: 60, marginTop: 10 }}>
         <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
           {description}
         </Text>
@@ -79,7 +71,7 @@ const ProductCard = (props) => {
         variant="gradient"
         gradient={{ from: 'indigo', to: 'cyan' }}
         fullWidth
-        style={{ marginTop: 14 }}
+        style={{ marginTop: 8 }}
         onClick={() => navigate(`/purchase/${id}`)}
       >
         Buy Now

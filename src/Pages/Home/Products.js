@@ -4,9 +4,7 @@ import ProductCard from '../../Shared/ProductCard/ProductCard';
 import useProducts from '../../hooks/useProducts';
 
 export const Products = () => {
-  const sixItems = [1, 2, 3, 4, 5, 6];
   const [products] = useProducts();
-  console.log(products.slice(-6));
   return (
     <div className="max-w-[1400px] flex flex-col items-center justify-center mx-5 px-0 md:px-20">
       <h1 className="text-center font-bold mb-20 text-2xl md:text-4xl">
