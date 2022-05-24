@@ -4,7 +4,7 @@ import ProductCard from '../../Shared/ProductCard/ProductCard';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-export const Products = () => {
+export const LatestProducts = () => {
   const {
     data: products,
     isLoading,
@@ -20,8 +20,8 @@ export const Products = () => {
   }
   return (
     <div className="max-w-[1400px] flex flex-col items-center justify-center mx-5 px-0 md:px-20">
-      <h1 className="text-center font-bold mb-20 text-2xl md:text-4xl">
-        Our Latest Items
+      <h1 className="text-center font-bold mb-32 text-2xl md:text-4xl mt-0 md:mt-10 ">
+        Our Latest Products
       </h1>
       <Grid grow>
         {products?.data.slice(-6).map((product) => (
