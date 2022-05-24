@@ -1,4 +1,3 @@
-import React from 'react';
 import { Center, Loader } from '@mantine/core';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';

@@ -1,22 +1,22 @@
-import { ActionIcon, useMantineColorScheme, Highlight } from '@mantine/core';
+import { ActionIcon, Highlight, useMantineColorScheme } from '@mantine/core';
+import { signOut } from 'firebase/auth';
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { ReactComponent as Sun } from '../../Assets/sun.svg';
-import { ReactComponent as Moon } from '../../Assets/moon.svg';
 import { ReactComponent as Bars } from '../../Assets/bars.svg';
 import { ReactComponent as Cross } from '../../Assets/cross.svg';
-import { useOutsideClicker } from '../../hooks/useOutsideClicker';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { signOut } from 'firebase/auth';
+import { ReactComponent as Moon } from '../../Assets/moon.svg';
+import { ReactComponent as Sun } from '../../Assets/sun.svg';
 import auth from '../../firebase.init';
+import useFirebase from '../../hooks/useFireBase';
+import { useOutsideClicker } from '../../hooks/useOutsideClicker';
 
 const menuItems = (
   <>
     <NavLink
       className={(navData) =>
         navData.isActive
-          ? 'text-sm font-semibold text-orange-400 px-3 py-3'
-          : 'text-sm hover:font-semibold px-3 py-3'
+          ? 'text-sm font-semibold text-orange-400 p-3'
+          : 'text-sm hover:font-semibold p-3'
       }
       to="/blog"
     >
@@ -26,8 +26,8 @@ const menuItems = (
       to="/contact"
       className={(navData) =>
         navData.isActive
-          ? 'text-sm font-semibold text-orange-400 px-3 py-3'
-          : 'text-sm hover:font-semibold px-3 py-3'
+          ? 'text-sm font-semibold text-orange-400 p-3'
+          : 'text-sm hover:font-semibold p-3'
       }
     >
       Contact
@@ -36,8 +36,8 @@ const menuItems = (
       to="/products"
       className={(navData) =>
         navData.isActive
-          ? 'text-sm font-semibold text-orange-400 px-3 py-3'
-          : 'text-sm hover:font-semibold px-3 py-3'
+          ? 'text-sm font-semibold text-orange-400 p-3'
+          : 'text-sm hover:font-semibold p-3'
       }
     >
       Products
@@ -46,8 +46,8 @@ const menuItems = (
       to="/portfolio"
       className={(navData) =>
         navData.isActive
-          ? 'text-sm font-semibold text-orange-400 px-3 py-3'
-          : 'text-sm hover:font-semibold px-3 py-3'
+          ? 'text-sm font-semibold text-orange-400 p-3'
+          : 'text-sm hover:font-semibold p-3'
       }
     >
       Portolio
@@ -56,6 +56,7 @@ const menuItems = (
 );
 
 const Navbar = () => {
+  const { user, handleSignOut } = useFirebase();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
   const [isOpen, setIsOpen] = useState(false);
@@ -67,10 +68,6 @@ const Navbar = () => {
 
   const wrapperRef = useRef(null);
   useOutsideClicker(wrapperRef, setIsOpen);
-
-  //const [user] = useAuthState(auth);
-
-  const logout = () => {};
 
   return (
     <div ref={wrapperRef} className="container-lg">
@@ -101,6 +98,32 @@ const Navbar = () => {
 
             <div className="hidden md:block  ">
               <div className="flex items-center space-x-4">
+                {user?.displayName ? (
+                  <>
+                    <NavLink
+                      className={' font-semibold text-orange-500 p-3'}
+                      to="/dashboard"
+                    >
+                      {user.displayName}
+                    </NavLink>
+                    <button
+                      className={'font-extrabold text-lg'}
+                      onClick={() => {
+                        handleSignOut(auth);
+                        localStorage.removeItem('accessToken');
+                      }}
+                    >
+                      Signout
+                    </button>
+                  </>
+                ) : (
+                  <NavLink
+                    to="/login"
+                    className={' font-semibold text-orange-500 p-3'}
+                  >
+                    Login/Signup
+                  </NavLink>
+                )}
                 <ActionIcon
                   variant=""
                   color={dark ? '' : 'dark'}
@@ -109,12 +132,6 @@ const Navbar = () => {
                 >
                   {dark ? <Sun /> : <Moon />}
                 </ActionIcon>
-                <NavLink
-                  to="/login"
-                  className={' font-semibold text-orange-500 px-3 py-3'}
-                >
-                  Login/Signup
-                </NavLink>
               </div>
             </div>
 
@@ -132,13 +149,15 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} user={user} />
       </nav>
     </div>
   );
 };
 
 const MobileMenu = ({ isOpen, setIsOpen }) => {
+  const { user, handleSignOut } = useFirebase();
+
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
   return (
@@ -164,12 +183,29 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
         {dark ? <Sun /> : <Moon />}
       </ActionIcon>
       {menuItems}
-      <NavLink
-        to="/login"
-        className={' font-semibold text-orange-500 px-3 py-3'}
-      >
-        Login/Signup
-      </NavLink>
+      {user?.displayName ? (
+        <>
+          <NavLink
+            className={' font-semibold text-orange-500 p-3'}
+            to="/dashboard"
+          >
+            {user.displayName}
+          </NavLink>
+          <button
+            className={'font-extrabold text-lg'}
+            onClick={() => {
+              handleSignOut(auth);
+              localStorage.removeItem('accessToken');
+            }}
+          >
+            Signout
+          </button>
+        </>
+      ) : (
+        <NavLink to="/login" className={' font-semibold text-orange-500 p-3'}>
+          Logi/Signup
+        </NavLink>
+      )}
     </div>
   );
 };

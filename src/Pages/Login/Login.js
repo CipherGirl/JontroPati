@@ -1,29 +1,40 @@
 import {
-  TextInput,
-  Checkbox,
   Button,
-  Group,
-  Box,
   Divider,
+  Highlight,
   PasswordInput,
   Text,
-  Highlight,
-  LoadingOverlay,
+  TextInput,
   Transition,
 } from '@mantine/core';
 //import { useForm } from '@mantine/form';
-import { useNavigate, useNavigationType } from 'react-router-dom';
-import { showNotification, updateNotification } from '@mantine/notifications';
-import { useEffect, useState } from 'react';
 import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import useFirebase from '../../hooks/useFireBase';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
-  const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { user, logInWithEmailAndPassword, signInUsingGoogle, resetPassword } =
+    useFirebase();
+  const [token] = useToken(user);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
+
   const form = useForm({
     initialValues: {
       email: '',
@@ -38,9 +49,23 @@ const Login = () => {
           : 'Password must contain 8 characters, 1 letter and 1 number',
     },
   });
-  const navigate = useNavigate();
 
-  // Note that position: relative is required
+  const handleSubmit = ({ email, password }) => {
+    logInWithEmailAndPassword(email, password);
+  };
+
+  const handleResetPassword = () => {
+    const { value } = form.getInputProps('email');
+    /^\S+@\S+$/.test(value)
+      ? resetPassword(value)
+      : showNotification({
+          color: 'red',
+          title: 'Invalid Email',
+          message:
+            'Email you entered is not valid, please enter a valid email!',
+          disallowClose: false,
+        });
+  };
   return (
     <Transition
       mounted={mounted}
@@ -71,12 +96,10 @@ const Login = () => {
             Welcome, Please Login!
           </Highlight>
           <div className="w-full md:w-96 mx-auto relative">
-            <LoadingOverlay visible={visible} />
             <form
               className="min-w-64 flex flex-col gap-3"
               onSubmit={form.onSubmit((values) => {
-                setVisible((v) => !v);
-                console.log(values);
+                handleSubmit(values);
               })}
             >
               <TextInput
@@ -100,7 +123,7 @@ const Login = () => {
                   align=""
                   component="span"
                   onClick={() => {
-                    console.log('Reset');
+                    handleResetPassword();
                   }}
                   highlight="Click here to reset password"
                   highlightStyles={(theme) => ({
@@ -175,10 +198,7 @@ const Login = () => {
               fullWidth
               variant="outline"
               color="orange"
-              onClick={() => {
-                setVisible((v) => !v);
-                console.log('Signup using Google CLicked');
-              }}
+              onClick={() => signInUsingGoogle()}
             >
               <img src="/google.svg" className="w-8 mr-10" />
               <h3 className="ml-2 mr-10">Signing With Google</h3>

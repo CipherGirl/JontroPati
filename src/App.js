@@ -1,4 +1,5 @@
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
 import { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
@@ -29,16 +30,18 @@ function App() {
         withGlobalStyles
         withNormalizeCSS
       >
-        <div className="App">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-          {location.pathname !== '/login' &&
-            location.pathname !== '/signup' && <Footer />}
-        </div>
+        <NotificationsProvider>
+          <div className="App">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+            {location.pathname !== '/login' &&
+              location.pathname !== '/signup' && <Footer />}
+          </div>
+        </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   );

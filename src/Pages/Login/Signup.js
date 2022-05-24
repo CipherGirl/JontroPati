@@ -1,30 +1,32 @@
 import {
-  TextInput,
-  Checkbox,
   Button,
-  Group,
-  Box,
   Divider,
+  Highlight,
   PasswordInput,
   Text,
-  Highlight,
-  LoadingOverlay,
+  TextInput,
   Transition,
-  Center,
 } from '@mantine/core';
-//import { useForm } from '@mantine/form';
-import { useNavigate, useNavigationType } from 'react-router-dom';
-import { showNotification, updateNotification } from '@mantine/notifications';
-import { useState, useEffect } from 'react';
 import { useForm } from '@mantine/form';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useFirebase from '../../hooks/useFireBase';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
-  const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { user, signUpWithEmailAndPassword, signInUsingGoogle } = useFirebase();
 
+  const [token] = useToken(user);
+  const navigate = useNavigate();
+
+  if (token) {
+    navigate('/');
+  }
   useEffect(() => {
     setMounted(true);
   }, []);
+
   const form = useForm({
     initialValues: {
       name: '',
@@ -43,9 +45,12 @@ const Signup = () => {
         value !== values.password ? 'Passwords did not match' : null,
     },
   });
-  const navigate = useNavigate();
 
-  // Note that position: relative is required
+  const handleSubmit = async (values) => {
+    const { name, email, password } = values;
+    await signUpWithEmailAndPassword(name, email, password);
+  };
+
   return (
     <Transition
       mounted={mounted}
@@ -76,12 +81,10 @@ const Signup = () => {
             Welcome, Please Register!
           </Highlight>
           <div className="w-full md:w-96 mx-auto relative">
-            <LoadingOverlay visible={visible} />
             <form
               className="min-w-64 flex flex-col gap-3"
               onSubmit={form.onSubmit((values) => {
-                setVisible((v) => !v);
-                console.log(values);
+                handleSubmit(values);
               })}
             >
               <TextInput
@@ -155,8 +158,7 @@ const Signup = () => {
               variant="outline"
               color="orange"
               onClick={() => {
-                setVisible((v) => !v);
-                console.log('Signup using Google CLicked');
+                signInUsingGoogle();
               }}
             >
               <img src="/google.svg" className="w-8 mr-10" />
