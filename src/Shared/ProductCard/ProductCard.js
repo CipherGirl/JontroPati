@@ -4,25 +4,34 @@ import {
   Card,
   Group,
   Image,
+  ScrollArea,
   Text,
   useMantineTheme,
 } from '@mantine/core';
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-const ProductCard = () => {
+const ProductCard = (props) => {
   const theme = useMantineTheme();
   const navigate = useNavigate();
-
-  const { title, description, image, price, minOrder, quantity } = {
-    title: 'Product Name',
-    description:
-      'With Fjord Tours you can explore more of the magical fjord landscapes with tours and activities on and around the fjords of Norway',
-    image: '/logo.png',
-    price: '$400',
-    minOrder: '100',
-    quantity: '20000',
-  };
+  const {
+    _id: id,
+    name,
+    description,
+    image,
+    price,
+    minimumOrder,
+    quantity,
+  } = props;
+  // const { title, description, image, price, minOrder, quantity } = {
+  //   title: 'Product Name',
+  //   description:
+  //     'With Fjord Tours you can explore more of the magical fjord landscapes with tours and activities on and around the fjords of Norway',
+  //   image: '/logo.png',
+  //   price: '$400',
+  //   minOrder: '100',
+  //   quantity: '20000',
+  // };
 
   const secondaryColor =
     theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7];
@@ -45,36 +54,33 @@ const ProductCard = () => {
 
       <Group
         position="apart"
-        style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
+        style={{ marginBottom: 5, marginTop: theme.spacing.xl }}
       >
-        <Text weight={600} size="xl" mt="xl">
-          {title}
+        <Text weight={600} size="sm" mt="xl">
+          {name}
         </Text>
         <Badge variant="gradient" gradient={{ from: 'green', to: 'cyan' }}>
           New
         </Badge>
       </Group>
-      <Group
-        position="apart"
-        style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
-      >
-        <Text size="md">
-          Price per unit: <strong>{price}</strong>
-        </Text>
-        <Text size="md">Minimum Order: {minOrder}</Text>
-        <Text size="md">quantity: {quantity}</Text>
-      </Group>
 
-      <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-        {description}
+      <Text size="md">
+        Price per unit: <strong>{price}</strong>
       </Text>
+      <Text size="md">Minimum Order: {minimumOrder}</Text>
+      <Text size="md">quantity: {quantity}</Text>
+      <ScrollArea style={{ height: 80, marginTop: 20 }}>
+        <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+          {description}
+        </Text>
+      </ScrollArea>
 
       <Button
         variant="gradient"
         gradient={{ from: 'indigo', to: 'cyan' }}
         fullWidth
         style={{ marginTop: 14 }}
-        onClick={() => navigate('/purchase')}
+        onClick={() => navigate(`/purchase/${id}`)}
       >
         Buy Now
       </Button>
