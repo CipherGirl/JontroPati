@@ -32,8 +32,8 @@ export const Banner = () => {
         <div class="flex-1">
           <img
             class="h-3/4 md:h-[500px] object-cover"
-            src="https://images.unsplash.com/photo-1567361809214-b97d828071d9?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=897"
-            alt=""
+            src="https://ksassets.timeincuk.net/wp/uploads/sites/56/2007/05/tool-kit.jpg"
+            alt="tools"
           />
         </div>
       </div>
