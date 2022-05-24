@@ -1,23 +1,23 @@
-import { Center, Loader } from '@mantine/core';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
-import auth from '../../firebase.init';
+
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import useFirebase from '../../hooks/useFireBase';
+import { Center, Loader } from '@mantine/core';
 
 const RequireAuth = ({ children }) => {
-  const [user, loading] = useAuthState(auth);
   const location = useLocation();
+  const { user, loading } = useFirebase();
 
   if (loading) {
-    <Center>
-      <Loader color="orange" size="xl" variant="dots" />
-    </Center>;
+    return (
+      <Loader className="m-auto" color="orange" size="xl" variant="dots" />
+    );
   }
-
-  if (!user) {
+  if (user.email) return children;
+  if (!loading) {
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
   }
-
-  return children;
 };
 
 export default RequireAuth;

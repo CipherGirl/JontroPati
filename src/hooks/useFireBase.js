@@ -16,7 +16,7 @@ import { auth } from '../firebase.init';
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
 
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ const useFirebase = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user || {});
+      setLoading(false);
     });
   }, []);
 
@@ -40,7 +41,6 @@ const useFirebase = () => {
       autoClose: false,
       disallowClose: true,
     });
-    setLoading(true);
 
     try {
       createUserWithEmailAndPassword(auth, email, password)
@@ -173,6 +173,7 @@ const useFirebase = () => {
     logInWithEmailAndPassword,
     signInUsingGoogle,
     user,
+    loading,
     updateUser,
     resetPassword,
     handleSignOut,
