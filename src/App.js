@@ -8,6 +8,11 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/Login/Signup';
 import Footer from './Shared/Footer/Footer';
 import Navbar from './Shared/Navbar/Navbar';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import RequireAuth from './Pages/Login/RequireAuth';
+import Orders from './Pages/Orders/Orders';
+import AddReview from './Pages/AddReview/AddReview';
+import Profile from './Pages/Profile/Profile';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('light');
@@ -37,9 +42,22 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <RequireAuth>
+                    <Dashboard />
+                  </RequireAuth>
+                }
+              >
+                <Route index element={<Orders />} />{' '}
+                <Route path="profile" element={<Profile />} />
+                <Route path="addreview" element={<AddReview />} />
+              </Route>
             </Routes>
             {location.pathname !== '/login' &&
-              location.pathname !== '/signup' && <Footer />}
+              location.pathname !== '/signup' &&
+              location.pathname !== '/dashboard' && <Footer />}
           </div>
         </NotificationsProvider>
       </MantineProvider>

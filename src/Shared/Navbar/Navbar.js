@@ -1,9 +1,9 @@
 import { ActionIcon, Highlight, useMantineColorScheme } from '@mantine/core';
-import { signOut } from 'firebase/auth';
 import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ReactComponent as Bars } from '../../Assets/bars.svg';
 import { ReactComponent as Cross } from '../../Assets/cross.svg';
+import { ReactComponent as DashboardIcon } from '../../Assets/layout-dashboard.svg';
 import { ReactComponent as Moon } from '../../Assets/moon.svg';
 import { ReactComponent as Sun } from '../../Assets/sun.svg';
 import auth from '../../firebase.init';
@@ -74,6 +74,15 @@ const Navbar = () => {
       <nav className="">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
+            {user?.email && window.location.href.includes('dashboard') && (
+              <label
+                for="menu-open"
+                id="mobile-menu-button"
+                class="m-2 p-2 md:hidden"
+              >
+                <DashboardIcon />
+              </label>
+            )}
             <NavLink to="/" className="flex items-center">
               <img className="h-7 mr-3" src="/logo.png" alt="Workflow" />
               <Highlight
@@ -104,7 +113,7 @@ const Navbar = () => {
                       className={' font-semibold text-orange-500 p-3'}
                       to="/dashboard"
                     >
-                      {user.displayName}
+                      Dashboard
                     </NavLink>
                     <button
                       className={'font-extrabold text-lg'}
@@ -189,7 +198,7 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
             className={' font-semibold text-orange-500 p-3'}
             to="/dashboard"
           >
-            {user.displayName}
+            Dashboard
           </NavLink>
           <button
             className={'font-extrabold text-lg'}
@@ -203,7 +212,7 @@ const MobileMenu = ({ isOpen, setIsOpen }) => {
         </>
       ) : (
         <NavLink to="/login" className={' font-semibold text-orange-500 p-3'}>
-          Logi/Signup
+          Login/Signup
         </NavLink>
       )}
     </div>
