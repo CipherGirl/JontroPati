@@ -1,12 +1,36 @@
-import { Button, Grid, MediaQuery, ScrollArea, Table } from '@mantine/core';
-import React from 'react';
+import {
+  Button,
+  Grid,
+  Loader,
+  MediaQuery,
+  ScrollArea,
+  Table,
+} from '@mantine/core';
+import React, { useEffect } from 'react';
 import ProductCard from '../../Shared/ProductCard/ProductCard';
-import useProducts from '../../hooks/useProducts';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 export const Products = () => {
-  const [products] = useProducts();
   const navigate = useNavigate();
+  const {
+    data: products,
+    isLoading,
+    refetch,
+  } = useQuery('allProducts', () =>
+    fetch(`${process.env.REACT_APP_BASE_URL}/products`).then((res) =>
+      res.json()
+    )
+  );
+
+  console.log(products, isLoading);
+
+  if (isLoading) {
+    return (
+      <Loader className="m-auto" color="orange" size="xl" variant="dots" />
+    );
+  }
+
   return (
     <div className=" flex flex-col items-center justify-center mx-0 px-0 md:mx-20 md:px-20">
       <h1 className="text-xl md:text-2xl my-10">Our Collection</h1>
@@ -27,7 +51,7 @@ export const Products = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {products?.map((product) => (
                 <tr key={product._id}>
                   <td>{product.name}</td>
                   <td>
