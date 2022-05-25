@@ -2,28 +2,28 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useOutsideClicker } from '../../hooks/useOutsideClicker';
 import useWindowSize from '../../hooks/useWindowSize';
+import { useMantineColorScheme } from '@mantine/core';
 
 const SideNavbar = () => {
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const size = useWindowSize();
-  const [customCSS, setCustomCSS] = useState(
-    'bg-gradient-to-t from-orange-400  md:w-64 w-3/4  '
-  );
+  const { colorScheme } = useMantineColorScheme();
+  const dark = colorScheme === 'dark';
+  const bgForTheme = `${
+    dark
+      ? ' bg-gradient-to-t from-slate-500 to-[#1a1b1e] animate-fadeIn md:w-64 w-[250px]'
+      : ' bg-gradient-to-t from-orange-500 to-white animate-fadeIn md:w-64 w-[250px]'
+  }`;
+  const [customCSS, setCustomCSS] = useState(bgForTheme);
 
   useEffect(() => {
     if (size.width <= 768) {
-      setCustomCSS(
-        `${
-          isOpen
-            ? 'bg-gradient-to-t from-orange-400  animate-fadeIn md:w-64 w-[250px]  '
-            : 'hidden'
-        }`
-      );
+      setCustomCSS(`${isOpen ? bgForTheme : 'hidden'}`);
     } else {
-      setCustomCSS('bg-gradient-to-t from-orange-400  md:w-64 w-3/4  ');
+      setCustomCSS(bgForTheme);
     }
-  }, [size.width, isOpen]);
+  }, [size.width, isOpen, dark]);
 
   useEffect(() => {
     setIsOpen(false);
@@ -33,7 +33,7 @@ const SideNavbar = () => {
   useOutsideClicker(wrapperRef, setIsOpen);
 
   return (
-    <div class=" min-h-[calc(100vh-64px)] flex" data-dev-hint="container">
+    <div class="h-[calc(100vh-64px)] flex fixed z-20" data-dev-hint="container">
       <input
         type="checkbox"
         id="menu-open"
