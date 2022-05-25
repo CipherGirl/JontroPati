@@ -16,6 +16,7 @@ import ProductCard from '../../Shared/ProductCard/ProductCard';
 import useFirebase from '../../hooks/useFireBase';
 import { useForm } from '@mantine/form';
 import axios from 'axios';
+import { showNotification } from '@mantine/notifications';
 
 const Purchase = () => {
   const { id } = useParams();
@@ -37,7 +38,6 @@ const Purchase = () => {
     initialValues: {
       phone: '',
       address: '',
-      productId: id,
       quantity: quantity,
       paymentStatus: '',
       deliveryStatus: '',
@@ -54,7 +54,7 @@ const Purchase = () => {
   }, [quantity]);
 
   const placeOrder = async (values) => {
-    const { address, deliveryStatus, paymentStatus, phone, productId } = values;
+    const { address, deliveryStatus, paymentStatus, phone } = values;
     const orderDetails = {
       name: user?.displayName,
       email: user?.email,
@@ -62,7 +62,7 @@ const Purchase = () => {
       deliveryStatus,
       paymentStatus,
       phone,
-      productId,
+      productId: id,
       quantity,
     };
     console.log(orderDetails);
@@ -71,6 +71,13 @@ const Purchase = () => {
       quantity: product.quantity - quantity,
     });
     refetch();
+    form.reset();
+    setQuantity(0);
+    showNotification({
+      color: 'green',
+      title: 'Order Places Successfully',
+      message: 'Proceed to my orders page for payment',
+    });
   };
 
   if (isLoading) {
