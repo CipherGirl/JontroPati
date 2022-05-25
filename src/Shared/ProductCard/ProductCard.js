@@ -43,16 +43,16 @@ const ProductCard = (props) => {
           src={image}
           alt="Norway"
           style={{
-            height: '250px',
-            width: '250px',
-            objectFit: 'cover',
+            maxHeight: '250px',
+            width: '200px',
+            objectFit: 'contain',
             margin: 'auto',
             padding: '20px 0px',
           }}
         />
       </Card.Section>
 
-      <Text weight={600} size="md" className="truncate">
+      <Text weight={600} size="md" className="">
         {name}
       </Text>
 
