@@ -5,7 +5,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import AddReview from './Pages/Dashboard/AddReview';
 import Dashboard from './Pages/Dashboard/Dashboard';
-import Orders from './Pages/Dashboard/Orders';
+import MyOrders from './Pages/Dashboard/MyOrders';
 import Profile from './Pages/Dashboard/Profile';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
@@ -61,7 +61,7 @@ function App() {
                   </RequireAuth>
                 }
               >
-                <Route index element={<Orders />} />
+                <Route index element={<MyOrders />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="addreview" element={<AddReview />} />
               </Route>
