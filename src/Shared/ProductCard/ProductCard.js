@@ -67,15 +67,17 @@ const ProductCard = (props) => {
         </Text>
       </ScrollArea>
 
-      <Button
-        variant="gradient"
-        gradient={{ from: 'indigo', to: 'cyan' }}
-        fullWidth
-        style={{ marginTop: 8 }}
-        onClick={() => navigate(`/purchase/${id}`)}
-      >
-        Buy Now
-      </Button>
+      {!window.location.href.includes('purchase') && (
+        <Button
+          variant="gradient"
+          gradient={{ from: 'indigo', to: 'cyan' }}
+          fullWidth
+          style={{ marginTop: 8 }}
+          onClick={() => navigate(`/purchase/${id}`)}
+        >
+          Buy Now
+        </Button>
+      )}
     </Card>
   );
 };
