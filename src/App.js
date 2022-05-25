@@ -66,9 +66,9 @@ function App() {
                 <Route path="addreview" element={<AddReview />} />
               </Route>
             </Routes>
-            {location.pathname !== '/login' &&
-              location.pathname !== '/signup' &&
-              location.pathname !== '/dashboard' && <Footer />}
+            {location.pathname == '/' &&
+              location.pathname == '/blog' &&
+              location.pathname !== '/contact' && <Footer />}
           </div>
         </NotificationsProvider>
       </MantineProvider>

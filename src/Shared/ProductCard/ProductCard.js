@@ -4,6 +4,7 @@ import {
   Card,
   Group,
   Image,
+  MediaQuery,
   ScrollArea,
   Text,
   useMantineTheme,
@@ -37,19 +38,18 @@ const ProductCard = (props) => {
     theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7];
 
   return (
-    <Card shadow="xl" p="lg">
+    <div className="md:min-h-[480px] shadow-lg px-5 flex flex-col justify-evenly">
       <Card.Section>
-        <Image
-          src={image}
-          alt="Norway"
-          style={{
-            maxHeight: '250px',
-            width: '200px',
-            objectFit: 'contain',
-            margin: 'auto',
-            padding: '20px 0px',
-          }}
-        />
+        <div style={{ minHeight: '200px', width: '200px', margin: 'auto' }}>
+          <Image
+            src={image}
+            alt="Norway"
+            style={{
+              objectFit: 'contain',
+              margin: 'auto',
+            }}
+          />
+        </div>
       </Card.Section>
 
       <Text weight={600} size="md" className="">
@@ -61,6 +61,7 @@ const ProductCard = (props) => {
       </Text>
       <Text size="md">Minimum Order: {minimumOrder}</Text>
       <Text size="md">quantity: {quantity}</Text>
+
       <ScrollArea style={{ height: 60, marginTop: 10 }}>
         <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
           {description}
@@ -72,13 +73,13 @@ const ProductCard = (props) => {
           variant="gradient"
           gradient={{ from: 'indigo', to: 'cyan' }}
           fullWidth
-          style={{ marginTop: 8 }}
+          className="my-5"
           onClick={() => navigate(`/purchase/${id}`)}
         >
           Buy Now
         </Button>
       )}
-    </Card>
+    </div>
   );
 };
 

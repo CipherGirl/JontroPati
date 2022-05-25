@@ -59,6 +59,11 @@ const Navbar = () => {
   const { user, handleSignOut } = useFirebase();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === 'dark';
+  const bgForTheme = `${
+    dark
+      ? 'bg-[#1a1b1e] container-lg sticky top-0 z-50 shadow-lg'
+      : 'bg-white container-lg sticky top-0 z-50 shadow-lg'
+  }`;
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -70,7 +75,7 @@ const Navbar = () => {
   useOutsideClicker(wrapperRef, setIsOpen);
 
   return (
-    <div ref={wrapperRef} className="container-lg">
+    <div ref={wrapperRef} className={bgForTheme}>
       <nav className="">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">

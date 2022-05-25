@@ -1,15 +1,6 @@
-import {
-  Button,
-  Grid,
-  Loader,
-  MediaQuery,
-  ScrollArea,
-  Table,
-} from '@mantine/core';
-import React, { useEffect } from 'react';
-import ProductCard from '../../Shared/ProductCard/ProductCard';
-import { useNavigate } from 'react-router-dom';
+import { Button, Loader, MediaQuery, ScrollArea, Table } from '@mantine/core';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 export const Products = () => {
   const navigate = useNavigate();
@@ -32,7 +23,7 @@ export const Products = () => {
   }
 
   return (
-    <div className=" flex flex-col items-center justify-center mx-0 px-0 md:mx-20 md:px-20">
+    <div className=" min-h-[calc(100vh-64px)] flex flex-col items-center justify-center pb-10">
       <h1 className="text-xl md:text-2xl my-10">Our Collection</h1>
 
       <MediaQuery
@@ -77,6 +68,9 @@ export const Products = () => {
           </Table>
         </ScrollArea>
       </MediaQuery>
+      <h5 className="mt-2 md:hidden text-slate-500">
+        Scroll horizontally to see more
+      </h5>
     </div>
   );
 };
