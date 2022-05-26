@@ -36,19 +36,23 @@ export const Products = () => {
               <tr>
                 <th>Name</th>
                 <th>Price</th>
+                <th>Minimum Order</th>
                 <th>Quantity</th>
                 <th>Image</th>
                 <th>Purchase Item</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               {products?.map((product) => (
                 <tr key={product._id}>
-                  <td>{product.name}</td>
+                  <td className="text-left font-semibold text-orange-500">
+                    {product.name}
+                  </td>
                   <td>
                     {'$ '}
                     {product.price}
                   </td>
+                  <td>{product.minimumOrder}</td>
                   <td>{product.quantity}</td>
                   <td>
                     <img className="max-w-[30px] h-auto" src={product.image} />
@@ -56,7 +60,7 @@ export const Products = () => {
                   <td>
                     <Button
                       variant="outline"
-                      color="green"
+                      color="cyan"
                       onClick={() => navigate(`/purchase/${product._id}`)}
                     >
                       Buy Now
