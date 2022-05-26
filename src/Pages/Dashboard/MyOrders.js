@@ -87,38 +87,44 @@ const OrderCard = (props) => {
         <img class="m-4 object-contain" src={product?.image} alt="Room Image" />
       </div>
       <div class="w-full flex flex-col m-4 gap-2 px-4 md:px-0">
-        <h3 class="text-xl my-2">{product?.name}</h3>
+        <h3 class="text-xl font-semibold my-2">{product?.name}</h3>
         <div class="text-sm flex items-center">{product?.description}</div>
-        <h2>
-          {'Ordered Quantity: '}
+        <h2 className="text-sm font-medium">
+          {'Quantity Ordered: '}
           <span class="text-xl font-bold text-orange-500">
             {props.quantity}
           </span>
           <span class="text-base"> Pieces</span>
         </h2>
-        <h3>
-          {'Order Placed On: '}
-          {new Date(props.date).toUTCString()}
-        </h3>
-        <Group>
-          <div className="flex gap-4 items-center">
-            <h2>Order Status:</h2>
-            <h2>Payment:</h2>
+        <h2 className="text-sm font-medium">
+          {'Date: '}
+          {new Date(props.date).toLocaleString()}
+        </h2>
+        <div className="flex flex-col md:flex-row py-2  gap-4 items-start md:items-center">
+          <h2 className="text-sm font-medium">Status:</h2>
+          <div className="flex gap-2">
+            <h2 className="text-sm font-medium">Payment:</h2>
             {props.paymentStatus == '' ? (
               <Badge color="gray">Unpaid</Badge>
             ) : (
               <Badge color="orange">Paid</Badge>
             )}
           </div>
-          <div className="flex gap-4 items-center">
-            <h2>Delivery:</h2>
+          {props.paymentStatus && (
+            <div className="flex gap-2">
+              <h2 className="text-sm font-medium">TransactionId:</h2>
+              <Badge color="cyan">{props.txId}</Badge>
+            </div>
+          )}
+          <div className="flex gap-2">
+            <h2 className="text-sm font-medium">Delivery:</h2>
             {props.deliveryStatus == '' ? (
               <Badge color="gray">Processing</Badge>
             ) : (
               <Badge color="green">Shipped</Badge>
             )}
           </div>
-        </Group>
+        </div>
         {!props.paymentStatus && (
           <div className="flex gap-2">
             <Button
@@ -149,7 +155,7 @@ const OrderCard = (props) => {
           <Button
             className="m-auto md:m-0"
             variant="gradient"
-            gradient={{ from: 'lime', to: 'cyan' }}
+            gradient={{ from: 'green', to: 'cyan' }}
             style={{ marginTop: 8, maxWidth: '120px' }}
             onClick={() => {
               navigate(`/purchase/${product._id}`);

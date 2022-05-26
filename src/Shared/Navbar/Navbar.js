@@ -61,8 +61,8 @@ const Navbar = () => {
   const dark = colorScheme === 'dark';
   const bgForTheme = `${
     dark
-      ? 'bg-[#1a1b1e] container-lg sticky top-0 z-50 shadow-lg'
-      : 'bg-white container-lg sticky top-0 z-50 shadow-lg'
+      ? 'bg-[#1a1b1e] container-lg sticky top-0 z-50'
+      : 'bg-white container-lg sticky top-0 z-50'
   }`;
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
