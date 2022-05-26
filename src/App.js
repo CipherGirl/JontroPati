@@ -1,4 +1,5 @@
 import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 import { NotificationsProvider } from '@mantine/notifications';
 import { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
@@ -38,38 +39,40 @@ function App() {
         withNormalizeCSS
       >
         <NotificationsProvider>
-          <div className="App">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/products" element={<Products />} />
-              <Route
-                path="/purchase/:id"
-                element={
-                  <RequireAuth>
-                    <Purchase />
-                  </RequireAuth>
-                }
-              ></Route>
-              <Route
-                path="/dashboard"
-                element={
-                  <RequireAuth>
-                    <Dashboard />
-                  </RequireAuth>
-                }
-              >
-                <Route index element={<MyOrders />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="addreview" element={<AddReview />} />
-              </Route>
-            </Routes>
-            {location.pathname == '/' &&
-              location.pathname == '/blog' &&
-              location.pathname !== '/contact' && <Footer />}
-          </div>
+          <ModalsProvider>
+            <div className="App">
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/products" element={<Products />} />
+                <Route
+                  path="/purchase/:id"
+                  element={
+                    <RequireAuth>
+                      <Purchase />
+                    </RequireAuth>
+                  }
+                ></Route>
+                <Route
+                  path="/dashboard"
+                  element={
+                    <RequireAuth>
+                      <Dashboard />
+                    </RequireAuth>
+                  }
+                >
+                  <Route index element={<MyOrders />} />
+                  <Route path="profile" element={<Profile />} />
+                  <Route path="addreview" element={<AddReview />} />
+                </Route>
+              </Routes>
+              {location.pathname == '/' &&
+                location.pathname == '/blog' &&
+                location.pathname !== '/contact' && <Footer />}
+            </div>
+          </ModalsProvider>
         </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>

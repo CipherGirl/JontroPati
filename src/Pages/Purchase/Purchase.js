@@ -83,6 +83,7 @@ const Purchase = () => {
       phone,
       productId: id,
       quantity,
+      date: new Date(),
     };
     console.log(orderDetails);
     await axios.post(`${process.env.REACT_APP_BASE_URL}/orders`, orderDetails);
@@ -113,16 +114,6 @@ const Purchase = () => {
           <ProductCard {...product} />
         </div>
         <Card shadow="lg" className="w-[295px]">
-          {/* <Button
-          variant="outline"
-          color="blue"
-          fullWidth
-          style={{ marginTop: 2 }}
-          onClick={() => {}}
-          disabled={product.quantity ? false : true}
-        >
-          Delivered
-        </Button> */}
           <form
             className="flex flex-col gap-2"
             onSubmit={form.onSubmit((values) => {
@@ -182,84 +173,9 @@ const Purchase = () => {
               Place Order
             </Button>
           </form>
-
-          {/* <Text size="xl" className="mt-8">
-          Restock Item
-        </Text>
-        <NumberInput
-          placeholder="Your name"
-          label="Enter Quantity"
-          onChange={() => {}}
-        />
-        <Button
-          variant="outline"
-          color="green"
-          fullWidth
-          onClick={() => {}}
-          className="mt-3"
-        >
-          Restock
-        </Button>
-        <Center>
-          <Button
-            variant="gradient"
-            gradient={{ from: 'black', to: 'grey' }}
-            style={{ marginTop: 5, width: 350, margin: 30 }}
-            onClick={() => navigate('/manage')}
-          >
-            Manage Inventory
-          </Button>
-        </Center> */}
         </Card>
       </div>
     </div>
-    // <div className="w-[300px] md:w-[500px] m-auto">
-    //   {/* <img src={product.image}></img>
-    //   <h1>{product.name}</h1>
-    //   <p>{product.description}</p>
-    //   <h2>
-    //     {'$ '}
-    //     {product.price}
-    //   </h2> */}
-    //   <Card shadow="xl" p="lg">
-    //     <Card.Section>
-    //       <Image
-    //         src={product.image}
-    //         alt="Norway"
-    //         style={{
-    //           height: '250px',
-    //           width: '250px',
-    //           objectFit: 'cover',
-    //           margin: 'auto',
-    //           padding: '20px 0px',
-    //         }}
-    //       />
-    //     </Card.Section>
-
-    //     <Text weight={600} size="md" className="truncate">
-    //       {name}
-    //     </Text>
-
-    //     <Text size="md">
-    //       Price per unit: <strong>{product.price}</strong>
-    //     </Text>
-    //     <Text size="md">Minimum Order: {product.minimumOrder}</Text>
-    //     <Text size="md">quantity: {product.quantity}</Text>
-    //     <Text size="sm" style={{ lineHeight: 1.5 }}>
-    //       {product.description}
-    //     </Text>
-
-    //     <Button
-    //       variant="gradient"
-    //       gradient={{ from: 'indigo', to: 'cyan' }}
-    //       fullWidth
-    //       style={{ marginTop: 8 }}
-    //       onClick={() => navigate(`/purchase/${id}`)}
-    //     >
-    //       Buy Now
-    //     </Button>
-    //   </Card>
-    // </div>
   );
 };
 

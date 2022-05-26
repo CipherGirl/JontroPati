@@ -56,11 +56,21 @@ const ProductCard = (props) => {
         {name}
       </Text>
 
-      <Text size="md">
+      <h3 className="font-medium">
         Price per unit: <strong>{price}</strong>
-      </Text>
-      <Text size="md">Minimum Order: {minimumOrder}</Text>
-      <Text size="md">quantity: {quantity}</Text>
+      </h3>
+      {quantity ? (
+        <>
+          <h3 className="font-medium">Minimum Order: {minimumOrder}</h3>
+          <h3 className="font-medium">Quantity: {quantity}</h3>
+        </>
+      ) : (
+        <>
+          <h3 className="font-medium">
+            Quantity: <span className="text-red-500 italic">Sold Out</span>
+          </h3>
+        </>
+      )}
 
       <ScrollArea style={{ height: 60, marginTop: 10 }}>
         <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
