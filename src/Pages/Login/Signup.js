@@ -9,7 +9,7 @@ import {
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useFirebase from '../../hooks/useFireBase';
 import useToken from '../../hooks/useToken';
 
@@ -19,10 +19,16 @@ const Signup = () => {
 
   const [token] = useToken(user);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  if (token) {
-    navigate('/');
-  }
+  let from = location.state?.from?.pathname || '/';
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
+
   useEffect(() => {
     setMounted(true);
   }, []);

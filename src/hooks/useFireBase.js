@@ -68,8 +68,8 @@ const useFirebase = () => {
 
   const logInWithEmailAndPassword = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
+      .then((result) => {
+        const user = result.user;
         setUser(user);
         showNotification({
           color: 'green',
@@ -77,7 +77,6 @@ const useFirebase = () => {
           message: 'Successfully logged in to JontroPati',
           autoClose: 4000,
         });
-        // navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -119,10 +118,17 @@ const useFirebase = () => {
           message: 'Successfully signed in using Google account!',
           autoClose: 4000,
         });
-        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
+        updateNotification({
+          id: 'load-data',
+          color: 'red',
+          title: 'Popup has been closed',
+          message:
+            'To signin with Google account please proceed to popup window',
+          autoClose: 4000,
+        });
       });
   };
 
@@ -136,9 +142,7 @@ const useFirebase = () => {
           message: 'Welcome, you are now member of JontroPati',
           autoClose: 4000,
         });
-
         setUser(auth.currentUser);
-        navigate('/');
       })
       .catch((err) => console.log(err));
   };
@@ -179,4 +183,5 @@ const useFirebase = () => {
     handleSignOut,
   };
 };
+
 export default useFirebase;

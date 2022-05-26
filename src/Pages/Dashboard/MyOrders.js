@@ -1,24 +1,51 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useFirebase from '../../hooks/useFireBase';
 import { useQuery } from 'react-query';
-import { Badge, Button, Group, Text } from '@mantine/core';
+import { Badge, Button, Group, Loader, Text } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { async } from '@firebase/util';
 import { useModals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import axios from 'axios';
+import { auth } from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const MyOrders = () => {
   const { user } = useFirebase();
+  const navigate = useNavigate();
+  const { handleSignout } = useFirebase();
+
   const {
     data: myOrders,
     isLoading,
     refetch,
-  } = useQuery(['myorder', user.email], () =>
-    fetch(`${process.env.REACT_APP_BASE_URL}/orders/?email=${user.email}`).then(
-      (res) => res.json()
-    )
-  );
+    status,
+    isIdle,
+  } = useQuery(['myorder', user?.email], () => fetchOrders(), {
+    enabled: !!user.email,
+  });
+
+  const fetchOrders = async () => {
+    const request = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/orders/?email=${user.email}`,
+      {
+        method: 'GET',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      }
+    );
+    return await request.json();
+  };
+
+  if (
+    myOrders?.message == 'Unauthorized' ||
+    myOrders?.message == 'Forbidden Access'
+  ) {
+    signOut(auth);
+    localStorage.removeItem('accessToken');
+    navigate('/');
+  }
 
   return (
     <div>

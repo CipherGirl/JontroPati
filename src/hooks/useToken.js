@@ -6,7 +6,6 @@ const useToken = (user) => {
 
   useEffect(() => {
     const userInfo = { name: user.displayName, email: user.email, role: '' };
-    console.log(userInfo);
     if (user.email) {
       fetch(`${BASE_URL}/user/${user.email}`, {
         method: 'PUT',
