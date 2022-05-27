@@ -27,7 +27,7 @@ const MyOrders = () => {
 
   const fetchOrders = async () => {
     const request = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/orders/?email=${user.email}`,
+      `${process.env.REACT_APP_BASE_URL}/orders/myorders/?email=${user.email}`,
       {
         method: 'GET',
         headers: {
