@@ -20,6 +20,7 @@ import Footer from './Shared/Footer/Footer';
 import Navbar from './Shared/Navbar/Navbar';
 import ManageOrder from './Pages/Dashboard/ManageOrder';
 import AddProduct from './Pages/Dashboard/AddProduct';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('light');
@@ -91,6 +92,14 @@ function App() {
                     element={
                       <RequireAdmin>
                         <AddProduct />
+                      </RequireAdmin>
+                    }
+                  />
+                  <Route
+                    path="manageproduct"
+                    element={
+                      <RequireAdmin>
+                        <ManageProducts />
                       </RequireAdmin>
                     }
                   />

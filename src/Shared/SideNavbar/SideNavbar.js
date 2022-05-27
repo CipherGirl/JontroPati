@@ -71,16 +71,22 @@ const SideNavbar = () => {
                   Manage All Orders
                 </NavLink>
                 <NavLink
-                  to="/dashboard/users"
+                  to="/dashboard/manageproduct"
                   className=" hover:font-semibold p-2"
                 >
-                  Make Admin
+                  Manage All Products
                 </NavLink>
                 <NavLink
                   to="/dashboard/addproduct"
                   className=" hover:font-semibold p-2"
                 >
                   Add Product
+                </NavLink>
+                <NavLink
+                  to="/dashboard/users"
+                  className=" hover:font-semibold p-2"
+                >
+                  Make Admin
                 </NavLink>
               </>
             ) : (

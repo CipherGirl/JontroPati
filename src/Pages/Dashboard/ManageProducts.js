@@ -1,8 +1,19 @@
-import { Button, Loader, MediaQuery, ScrollArea, Table } from '@mantine/core';
+import {
+  Button,
+  Loader,
+  MediaQuery,
+  ScrollArea,
+  Table,
+  Text,
+} from '@mantine/core';
+import { useModals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
+import axios from 'axios';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
-export const Products = () => {
+const ManageProducts = () => {
+  const modals = useModals();
   const navigate = useNavigate();
   const {
     data: products,
@@ -13,6 +24,30 @@ export const Products = () => {
       res.json()
     )
   );
+  const handleDelte = (id) => {
+    modals.openConfirmModal({
+      title: 'Please confirm your action',
+      children: (
+        <Text size="sm">
+          This action is so important that you are required to confirm it with a
+          modal. Please click one of these buttons to proceed.
+        </Text>
+      ),
+      labels: { confirm: 'Confirm', cancel: 'Cancel' },
+      onCancel: () => console.log('Cancel'),
+      onConfirm: () => deleteProduct(),
+    });
+
+    const deleteProduct = async () => {
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}/products/${id}`);
+      refetch();
+      showNotification({
+        color: 'teal',
+        title: 'Product Deleted Successfully',
+        message: 'The product has been removed from Database',
+      });
+    };
+  };
 
   if (isLoading) {
     return (
@@ -21,8 +56,8 @@ export const Products = () => {
   }
 
   return (
-    <div className=" min-h-[calc(100vh-64px)] flex flex-col items-center justify-center pb-10">
-      <h1 className="text-xl md:text-2xl my-10">Our Collection</h1>
+    <div className=" min-h-[calc(100vh-64px)] ">
+      <h1 className="text-xl md:text-2xl my-10">Manage All Products</h1>
 
       <MediaQuery
         query="(max-width: 767px) and (min-width: 300px)"
@@ -37,10 +72,10 @@ export const Products = () => {
                 <th>Minimum Order</th>
                 <th>Quantity</th>
                 <th>Image</th>
-                <th>Purchase Item</th>
+                <th>Delete Item</th>
               </tr>
             </thead>
-            <tbody className="text-center">
+            <tbody>
               {products?.map((product) => (
                 <tr key={product._id}>
                   <td className="text-left font-semibold text-orange-500">
@@ -57,11 +92,12 @@ export const Products = () => {
                   </td>
                   <td>
                     <Button
-                      variant="outline"
-                      color="cyan"
-                      onClick={() => navigate(`/purchase/${product._id}`)}
+                      color="red"
+                      onClick={() => {
+                        handleDelte(product._id);
+                      }}
                     >
-                      Buy Now
+                      Delete Item
                     </Button>
                   </td>
                 </tr>
@@ -76,3 +112,5 @@ export const Products = () => {
     </div>
   );
 };
+
+export default ManageProducts;
