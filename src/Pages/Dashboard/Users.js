@@ -121,7 +121,7 @@ const Users = () => {
                     </>
                   ) : (
                     <>
-                      <td className="text-center">
+                      <td>
                         <Badge color="orange" size="lg">
                           ADMIN
                         </Badge>
