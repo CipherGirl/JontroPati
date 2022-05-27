@@ -64,7 +64,7 @@ const ManageProducts = () => {
         styles={{ width: 350 }}
       >
         <ScrollArea>
-          <Table>
+          <Table style={{ width: 1000 }}>
             <thead>
               <tr>
                 <th>Name</th>
