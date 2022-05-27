@@ -8,14 +8,18 @@ import AddReview from './Pages/Dashboard/AddReview';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyOrders from './Pages/Dashboard/MyOrders';
 import Profile from './Pages/Dashboard/Profile';
+import Users from './Pages/Dashboard/Users';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 import RequireAuth from './Pages/Login/RequireAuth';
 import SignUp from './Pages/Login/Signup';
 import { Products } from './Pages/Products/Products';
 import Purchase from './Pages/Purchase/Purchase';
 import Footer from './Shared/Footer/Footer';
 import Navbar from './Shared/Navbar/Navbar';
+import ManageOrder from './Pages/Dashboard/ManageOrder';
+import AddProduct from './Pages/Dashboard/AddProduct';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('light');
@@ -66,6 +70,30 @@ function App() {
                   <Route index element={<MyOrders />} />
                   <Route path="profile" element={<Profile />} />
                   <Route path="addreview" element={<AddReview />} />
+                  <Route
+                    path="users"
+                    element={
+                      <RequireAdmin>
+                        <Users />
+                      </RequireAdmin>
+                    }
+                  />
+                  <Route
+                    path="manageorder"
+                    element={
+                      <RequireAdmin>
+                        <ManageOrder />
+                      </RequireAdmin>
+                    }
+                  />
+                  <Route
+                    path="addproduct"
+                    element={
+                      <RequireAdmin>
+                        <AddProduct />
+                      </RequireAdmin>
+                    }
+                  />
                 </Route>
               </Routes>
               {location.pathname == '/' &&

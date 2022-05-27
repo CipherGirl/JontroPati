@@ -46,10 +46,18 @@ const MyOrders = () => {
     localStorage.removeItem('accessToken');
     navigate('/');
   }
+  if (isLoading) {
+    return (
+      <Loader className="m-auto" color="orange" size="xl" variant="dots" />
+    );
+  }
 
   return (
     <div>
       <h1>Your Orders</h1>
+      {myOrders?.length == 0 && (
+        <h2 className="my-10 text-2xl">You Don't Have Placed Any Orders</h2>
+      )}
       {myOrders
         ?.slice(0)
         .reverse()

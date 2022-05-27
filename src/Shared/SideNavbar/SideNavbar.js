@@ -3,8 +3,12 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useOutsideClicker } from '../../hooks/useOutsideClicker';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useMantineColorScheme } from '@mantine/core';
+import useFirebase from '../../hooks/useFireBase';
+import useAdmin from '../../hooks/useAdmin';
 
 const SideNavbar = () => {
+  const { user } = useFirebase();
+  const [admin] = useAdmin(user);
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
   const size = useWindowSize();
@@ -51,21 +55,47 @@ const SideNavbar = () => {
       >
         <div className="h-3/4 flex flex-col justify-center mt-8">
           <nav className="flex flex-col items-center justify-between gap-2">
-            <NavLink to="/dashboard" className=" hover:font-semibold p-2">
-              Orders
-            </NavLink>{' '}
             <NavLink
               to="/dashboard/profile"
               className=" hover:font-semibold p-2"
             >
               Profile
-            </NavLink>{' '}
-            <NavLink
-              to="/dashboard/addreview"
-              className=" hover:font-semibold p-2"
-            >
-              Add Review
             </NavLink>
+
+            {admin ? (
+              <>
+                <NavLink
+                  to="/dashboard/manageorder"
+                  className=" hover:font-semibold p-2"
+                >
+                  Manage All Orders
+                </NavLink>
+                <NavLink
+                  to="/dashboard/users"
+                  className=" hover:font-semibold p-2"
+                >
+                  Make Admin
+                </NavLink>
+                <NavLink
+                  to="/dashboard/addproduct"
+                  className=" hover:font-semibold p-2"
+                >
+                  Add Product
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to="/dashboard" className=" hover:font-semibold p-2">
+                  Orders
+                </NavLink>
+                <NavLink
+                  to="/dashboard/addreview"
+                  className=" hover:font-semibold p-2"
+                >
+                  Add Review
+                </NavLink>
+              </>
+            )}
           </nav>
         </div>
       </aside>
