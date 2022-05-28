@@ -22,6 +22,7 @@ import ManageOrder from './Pages/Dashboard/ManageOrder';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import Checkout from './Pages/Checkout/Checkout';
+import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('light');
@@ -53,6 +54,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/checkout/:id" element={<Checkout />} />
                 <Route
                   path="/purchase/:id"
@@ -107,9 +109,7 @@ function App() {
                   />
                 </Route>
               </Routes>
-              {location.pathname == '/' &&
-                location.pathname == '/blog' &&
-                location.pathname !== '/contact' && <Footer />}
+              {location.pathname == '/' && <Footer />}
             </div>
           </ModalsProvider>
         </NotificationsProvider>
