@@ -32,37 +32,29 @@ const SummaryBlock = (props: { inViewport: boolean }) => {
   return (
     <div ref={forwardedRef}>
       {start && (
-        <div className=" flex flex-col md:flex-row items-center gap-10 md:gap-48">
+        <div className=" flex flex-col md:flex-row items-center gap-10 md:gap-18">
           <div className={summaryGroupCSS}>
             <Customer />
-            <CountUp end={200} duration={1.5} delay={0.2} useEasing>
-              {({ countUpRef }) => (
-                <p className="text-center font-medium text-xl md:text-2xl mt-5">
-                  <span ref={countUpRef}></span>+ Customers
-                </p>
-              )}
-            </CountUp>
+            <div className="text-center font-medium text-xl md:text-2xl mt-5">
+              <CountUp start={0} end={200} duration={3} delay={0.5} />
+              <span>+ Customers</span>
+            </div>
           </div>
+
           <div className={summaryGroupCSS}>
             <Revenue />
-            <CountUp end={100} duration={1.5} delay={0.2} useEasing>
-              {({ countUpRef }) => (
-                <p className="text-center font-medium text-xl md:text-2xl mt-5">
-                  <span ref={countUpRef}></span>M+ Annual Revenue
-                </p>
-              )}
-            </CountUp>
+            <div className="text-center font-medium text-xl md:text-2xl mt-5">
+              <CountUp start={0} end={100} duration={3} delay={0.5} />
+              <span>M+ Annual Revenue</span>
+            </div>
           </div>
+
           <div className={summaryGroupCSS}>
-            {' '}
             <Rating />
-            <CountUp end={30} duration={1.5} delay={0.2} useEasing>
-              {({ countUpRef }) => (
-                <p className="text-center font-medium text-xl md:text-2xl mt-5">
-                  <span ref={countUpRef}></span>K+ Reviews
-                </p>
-              )}
-            </CountUp>
+            <div className="text-center font-medium text-xl md:text-2xl mt-5">
+              <CountUp start={0} end={30} duration={3} delay={0.5} />
+              <span>K+ Reviews</span>
+            </div>
           </div>
         </div>
       )}
