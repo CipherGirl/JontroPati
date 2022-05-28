@@ -23,7 +23,7 @@ import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import Checkout from './Pages/Checkout/Checkout';
 import Portfolio from './Pages/Portfolio/Portfolio';
-import Blog from './Pages/Home/Blog/Blog';
+import Blog from './Pages/Blog/Blog';
 import NotFound from './Pages/NotFound/NotFound';
 
 function App() {
