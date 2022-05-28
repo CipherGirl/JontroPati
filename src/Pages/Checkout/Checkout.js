@@ -12,6 +12,15 @@ import {
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../../Shared/ProductCard/ProductCard';
+
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from './CheckoutForm';
+
+const stripePromise = loadStripe(
+  'pk_test_51L4Q7qJllomnrkH1Ppf0NqobYe37SS9eGFYqhDn7GUHqNE7YusRAMs2r0DiGNkeHkEplVHuOVhI8kbgWmZmrIg1D00SVmMpyPx'
+);
+
 const Checkout = () => {
   const { id } = useParams();
 
@@ -19,7 +28,7 @@ const Checkout = () => {
     data: order,
     isLoading,
     refetch,
-  } = useQuery(['order', id], () =>
+  } = useQuery(['paymentOrder', id], () =>
     fetch(`${process.env.REACT_APP_BASE_URL}/orders/${id}`, {
       method: 'GET',
       headers: {
@@ -71,21 +80,15 @@ const Checkout = () => {
           <Text style={{ lineHeight: 1.5 }}>Name: {order?.name}</Text>
           <Text style={{ lineHeight: 1.5 }}>Email: {order?.email}</Text>
           <Text style={{ lineHeight: 1.5 }}>Phone: {order?.phone}</Text>
-          <Text style={{ lineHeight: 1.5 }}>Address: {order?.address}</Text>
+          <Text mb="lg" style={{ lineHeight: 1.5 }}>
+            Address: {order?.address}
+          </Text>
 
-          <Button
-            fullWidth
-            variant="outline"
-            color="blue"
-            className="my-5"
-            onClick={() => {}}
-          >
-            {'Make Payment for  '}
-            <span className="font-extrabold text-orange-500 pl-2">
-              {'  $'}
-              {order?.price}
-            </span>
-          </Button>
+          {order?.productId && (
+            <Elements stripe={stripePromise}>
+              <CheckoutForm {...order} />
+            </Elements>
+          )}
         </Card>
       </div>
     </div>

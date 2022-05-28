@@ -21,13 +21,13 @@ const MyOrders = () => {
     refetch,
     status,
     isIdle,
-  } = useQuery(['myorder', user?.email], () => fetchOrders(), {
+  } = useQuery(['myOrders', user?.email, 'random'], () => fetchOrders(), {
     enabled: !!user.email,
   });
 
   const fetchOrders = async () => {
     const request = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/orders/myorders/?email=${user.email}`,
+      `${process.env.REACT_APP_BASE_URL}/myorders/?email=${user.email}`,
       {
         method: 'GET',
         headers: {
@@ -151,7 +151,7 @@ const OrderCard = (props) => {
           {props.paymentStatus && (
             <div className="flex gap-2">
               <h2 className="text-sm font-medium">TransactionId:</h2>
-              <Badge color="cyan">{props.txId}</Badge>
+              <Badge color="cyan">{props.transactionId}</Badge>
             </div>
           )}
           <div className="flex gap-2">

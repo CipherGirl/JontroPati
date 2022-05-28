@@ -91,9 +91,9 @@ const ManageOrders = () => {
                 <th>Phone</th>
                 <th>Product Id</th>
                 <th>Quantity</th>
-                <th>Payment Status</th>
+                <th>Payment</th>
                 <th>TransactionId</th>
-                <th>Delivery Status</th>
+                <th>Delivery</th>
                 <th>Deliver?</th>
                 <th>Delete Order</th>
               </tr>
@@ -121,10 +121,10 @@ const ManageOrders = () => {
                     )}
                   </td>
                   <td>
-                    {order.txId == '' ? (
+                    {order.transactionId == '' ? (
                       <Badge color="gray">Processing</Badge>
                     ) : (
-                      <Badge color="cyan">{order.txId}</Badge>
+                      <Badge color="cyan">{order.transactionId}</Badge>
                     )}
                   </td>
                   <td>
