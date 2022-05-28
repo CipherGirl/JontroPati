@@ -56,7 +56,7 @@ export const Reviews = () => {
 
 const ReviewCard = ({ name, rating, review }) => {
   return (
-    <div class="w-[300px] md:w-[500px] border-2 border-blue-400 shadow-xl rounded-lg mx-auto">
+    <div class="w-[300px] md:w-[400px] border-2 border-orange-400 shadow-xl rounded-lg mx-auto">
       <div class="flex flex-col items-center mt-2">
         <Avatar size="lg" />
         <h2 class="font-semibold">{name}</h2>

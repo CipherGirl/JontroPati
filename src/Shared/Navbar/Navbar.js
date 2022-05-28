@@ -22,16 +22,7 @@ const menuItems = (
     >
       Blog
     </NavLink>
-    <NavLink
-      to="/contact"
-      className={(navData) =>
-        navData.isActive
-          ? 'text-sm font-semibold text-orange-400 p-3'
-          : 'text-sm hover:font-semibold p-3'
-      }
-    >
-      Contact
-    </NavLink>
+
     <NavLink
       to="/products"
       className={(navData) =>
