@@ -24,6 +24,7 @@ import ManageProducts from './Pages/Dashboard/ManageProducts';
 import Checkout from './Pages/Checkout/Checkout';
 import Portfolio from './Pages/Portfolio/Portfolio';
 import Blog from './Pages/Home/Blog/Blog';
+import NotFound from './Pages/NotFound/NotFound';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('light');
@@ -110,6 +111,7 @@ function App() {
                     }
                   />
                 </Route>
+                <Route path="*" element={<NotFound />}></Route>
               </Routes>
               {location.pathname == '/' && <Footer />}
             </div>
