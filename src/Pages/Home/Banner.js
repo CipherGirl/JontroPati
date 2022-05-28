@@ -1,7 +1,9 @@
 import { Highlight } from '@mantine/core';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Banner = () => {
+  const navigate = useNavigate();
   return (
     <section class="max-w-7xl flex flex-col md:flex-row items-center px-2">
       <div class="flex flex-col md:flex-1 items-center md:items-start p-4 ">
@@ -24,7 +26,10 @@ export const Banner = () => {
           and outdoor power equipment in the lithium-ion, intelligent and
           digital era.
         </p>
-        <button class="px-6 py-3 font-bold text-white bg-orange-400 hover:bg-orange-500 rounded-full mt-6 shadow-md focus:shadow-sm transition duration-150 ease-in-out">
+        <button
+          class="px-6 py-3 font-bold text-white bg-orange-400 hover:bg-orange-500 rounded-full mt-6 shadow-md focus:shadow-sm transition duration-150 ease-in-out"
+          onClick={() => navigate('/products')}
+        >
           Products
         </button>
       </div>
