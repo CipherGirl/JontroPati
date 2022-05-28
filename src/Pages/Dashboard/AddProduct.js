@@ -24,7 +24,6 @@ const AddProduct = () => {
   const imageStorageKey = process.env.REACT_APP_IMAGEBB_KEY;
 
   const onSubmit = async (data) => {
-    console.log(`${process.env.REACT_APP_BASE_URL}/products`);
     const image = data.image[0];
     const formData = new FormData();
     formData.append('image', image);
@@ -56,7 +55,11 @@ const AddProduct = () => {
             .then((res) => res.json())
             .then((inserted) => {
               if (inserted.insertedId) {
-                console.log('Product added successfully');
+                showNotification({
+                  color: 'teal',
+                  title: 'Product Added  Successfully',
+                  message: 'New product has been added to Jotropati',
+                });
                 reset();
               } else {
                 console.log('Failed to add the product');
@@ -65,10 +68,6 @@ const AddProduct = () => {
         }
       });
   };
-
-  // const onSubmit = (data) => {
-  //   console.log(data);
-  // };
 
   if (isLoading) {
     return (

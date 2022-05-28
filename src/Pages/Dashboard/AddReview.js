@@ -42,8 +42,6 @@ const AddReview = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log({ rating: rating, review: data.review });
-    console.log(`${process.env.REACT_APP_BASE_URL}/user/${user?.email}`);
 
     fetch(`${process.env.REACT_APP_BASE_URL}/user/${user?.email}`, {
       method: 'PATCH',

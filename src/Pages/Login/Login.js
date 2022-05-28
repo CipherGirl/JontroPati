@@ -26,10 +26,6 @@ const Login = () => {
   let from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
-    //console.log(user);
-  }, [user]);
-
-  useEffect(() => {
     setMounted(true);
   }, []);
 

@@ -88,7 +88,6 @@ const Purchase = () => {
       quantity,
       date: new Date(),
     };
-    console.log(orderDetails);
     await axios.post(`${process.env.REACT_APP_BASE_URL}/orders`, orderDetails);
     await axios.put(`${process.env.REACT_APP_BASE_URL}/products/${id}`, {
       quantity: product.quantity - quantity,

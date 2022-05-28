@@ -24,15 +24,12 @@ const CheckoutForm = (order) => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.clientSecret) {
-          setClientSecret(data.clientSecret);
-          console.log(data.clientSecret);
-        }
+          setClientSecret(data.clientSecret);        }
       });
   }, [price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('HANDE');
 
     if (!stripe || !elements) {
       return;
@@ -88,7 +85,6 @@ const CheckoutForm = (order) => {
         .then((res) => res.json())
         .then((data) => {
           setProcessing(false);
-          console.log(data);
         });
     }
   };

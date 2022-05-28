@@ -120,7 +120,7 @@ const useFirebase = () => {
         });
       })
       .catch((error) => {
-        console.log(error.message);
+
         updateNotification({
           id: 'load-data',
           color: 'red',

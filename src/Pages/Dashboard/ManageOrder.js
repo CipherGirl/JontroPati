@@ -57,9 +57,6 @@ const ManageOrders = () => {
     };
   };
 
-  useEffect(() => {
-    console.log(allOrders);
-  }, [allOrders]);
 
   const shipOrder = async (id, value) => {
     setValue('shipped');
