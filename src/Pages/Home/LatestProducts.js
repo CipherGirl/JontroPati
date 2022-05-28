@@ -24,11 +24,14 @@ export const LatestProducts = () => {
         Our Latest Products
       </h1>
       <Grid grow>
-        {products?.data.slice(-6).map((product) => (
-          <Grid.Col span={4} key={product._id}>
-            <ProductCard {...product} />
-          </Grid.Col>
-        ))}
+        {products?.data
+          .slice(-6)
+          .reverse()
+          .map((product) => (
+            <Grid.Col span={4} key={product._id}>
+              <ProductCard {...product} />
+            </Grid.Col>
+          ))}
       </Grid>
     </div>
   );
