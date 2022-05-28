@@ -21,6 +21,7 @@ import Navbar from './Shared/Navbar/Navbar';
 import ManageOrder from './Pages/Dashboard/ManageOrder';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
+import Checkout from './Pages/Checkout/Checkout';
 
 function App() {
   const [colorScheme, setColorScheme] = useState('light');
@@ -52,6 +53,7 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/checkout/:id" element={<Checkout />} />
                 <Route
                   path="/purchase/:id"
                   element={

@@ -82,6 +82,9 @@ const Purchase = () => {
       paymentStatus,
       phone,
       productId: id,
+      productName: product.name,
+      price: (parseFloat(product.price) * quantity).toFixed(2),
+      image: product.image,
       quantity,
       date: new Date(),
     };

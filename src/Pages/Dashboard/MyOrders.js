@@ -81,6 +81,9 @@ const OrderCard = (props) => {
       (res) => res.json()
     )
   );
+  useEffect(() => {
+    console.log(props);
+  });
   const handleCancel = () => {
     modals.openConfirmModal({
       title: 'Please confirm your action',
@@ -168,7 +171,7 @@ const OrderCard = (props) => {
               gradient={{ from: 'yellow', to: 'orange' }}
               style={{ marginTop: 8, maxWidth: '100px' }}
               onClick={() => {
-                navigate(`/checkout/${product._id}`);
+                navigate(`/checkout/${props._id}`);
               }}
             >
               Pay Now
