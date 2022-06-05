@@ -38,8 +38,8 @@ This is JontroPati, a manufacturer website of hand/electric tools and many more.
 
 ### Client Side
 
-- Link: <https://github.com/programming-hero-web-course1/manufacturer-website-client-side-CipherGirl>
+- Link: <https://github.com/CipherGirl/JontroPati-Client>
 
 ### Server Side
 
-- Link: <https://github.com/programming-hero-web-course1/manufacturer-website-server-side-CipherGirl>
+- Link: <https://github.com/CipherGirl/JontroPati-Server>
