@@ -6,7 +6,7 @@ export const Banner = () => {
   const navigate = useNavigate();
   return (
     <section class="max-w-7xl flex flex-col md:flex-row items-center px-2">
-      <div class="flex flex-col md:flex-1 items-center md:items-start p-4 ">
+      <div class="flex flex-col md:flex items-center md:items-start p-4 ">
         <Highlight
           style={{ fontSize: '4rem' }}
           highlight="Pati"
@@ -33,15 +33,11 @@ export const Banner = () => {
           Products
         </button>
       </div>
-      <div class="mx-0 md:mx-10">
-        <div class="flex-1">
-          <img
-            class="h-3/4 md:h-[500px] object-cover"
-            src="https://ksassets.timeincuk.net/wp/uploads/sites/56/2007/05/tool-kit.jpg"
-            alt="tools"
-          />
-        </div>
-      </div>
+      <img
+        class="mt-10 ml-0 md:ml-10 h-full md:w-[600px] shadow-xl rounded-md hover:scale-110 transition-all ease-in-out duration-100"
+        src="https://images.unsplash.com/photo-1567361808960-dec9cb578182?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1195&q=80"
+        alt="tools"
+      />
     </section>
   );
 };

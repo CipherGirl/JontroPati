@@ -1,16 +1,13 @@
 import {
-  Badge,
   Button,
   Card,
-  Group,
   Image,
-  MediaQuery,
   ScrollArea,
   Text,
   useMantineTheme,
 } from '@mantine/core';
 import React from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = (props) => {
   const theme = useMantineTheme();

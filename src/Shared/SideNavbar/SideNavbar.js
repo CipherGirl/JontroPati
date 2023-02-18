@@ -27,7 +27,7 @@ const SideNavbar = () => {
     } else {
       setCustomCSS(bgForTheme);
     }
-  }, [size.width, isOpen, dark]);
+  }, [size.width, isOpen, dark, bgForTheme]);
 
   useEffect(() => {
     setIsOpen(false);

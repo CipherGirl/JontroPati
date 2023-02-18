@@ -20,8 +20,6 @@ const useFirebase = () => {
   const googleProvider = new GoogleAuthProvider();
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {}, []);
 
@@ -120,7 +118,6 @@ const useFirebase = () => {
         });
       })
       .catch((error) => {
-
         updateNotification({
           id: 'load-data',
           color: 'red',

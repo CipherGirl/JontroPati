@@ -7,7 +7,6 @@ import {
   TextInput,
   Transition,
 } from '@mantine/core';
-//import { useForm } from '@mantine/form';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { useEffect, useState } from 'react';
@@ -200,7 +199,7 @@ const Login = () => {
               color="orange"
               onClick={() => signInUsingGoogle()}
             >
-              <img src="/google.svg" className="w-8 mr-10" />
+              <img src="/google.svg" className="w-8 mr-10" alt="google-logo" />
               <h3 className="ml-2 mr-10">Signing With Google</h3>
             </Button>
           </div>

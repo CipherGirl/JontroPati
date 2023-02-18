@@ -1,4 +1,4 @@
-import { Badge, Divider, Group, MediaQuery } from '@mantine/core';
+import { Badge } from '@mantine/core';
 import React from 'react';
 
 const Portfolio = () => {
@@ -41,13 +41,18 @@ const Portfolio = () => {
               Email: hasnahenamow@gmail.com
               <br />
               Github:{' '}
-              <a href="https://github.com/CipherGirl" target="_blank">
+              <a
+                href="https://github.com/CipherGirl"
+                target="_blank"
+                rel="noreferrer"
+              >
                 www.github.com/CipherGirl
               </a>
               <br /> LinkedIn:{' '}
               <a
                 href="https://www.linkedin.com/in/hasna-hena-mow/"
                 target="_blank"
+                rel="noreferrer"
               >
                 @hasna-hena-mow
               </a>
@@ -93,7 +98,11 @@ const Portfolio = () => {
 
         <h3 className="font-semibold mt-5">
           JontroPati | Power/Hand Tools Manufacturer (Manufacturer Website)
-          <a href="https://jontropati.firebaseapp.com/" target="_blank">
+          <a
+            href="https://jontropati.firebaseapp.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-external-link inline-flex ml-2"
@@ -127,7 +136,11 @@ const Portfolio = () => {
         <h3 className="font-semibold mt-5">
           Aroma Central | Inventory of Fragrance Products (Warehouse Inventory
           Website)
-          <a href="https://aroma-central.web.app/" target="_blank">
+          <a
+            href="https://aroma-central.web.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-external-link inline-flex ml-2"
@@ -156,7 +169,11 @@ const Portfolio = () => {
         </p>
         <h3 className="font-semibold mt-5">
           Qaiba Homes | Realtor Website Template (Independant Service Provider)
-          <a href="https://qaibahomes.web.app/" target="_blank">
+          <a
+            href="https://qaibahomes.web.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-external-link inline-flex ml-2"

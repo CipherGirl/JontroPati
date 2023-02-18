@@ -8,7 +8,7 @@ const Footer = () => {
         <div class="grid grid-cols-3 gap-10 mb-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-20">
           <div class="col-span-1">
             <a
-              href="#_"
+              href="https://cip"
               class="text-xl font-sans font-extrabold leading-none  select-none logo"
             >
               <Highlight
@@ -32,31 +32,31 @@ const Footer = () => {
               Product
             </p>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Features
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Integrations
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Documentation
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               FAQs
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Pricing
@@ -67,25 +67,25 @@ const Footer = () => {
               About
             </p>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Our Story
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Company
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Privacy
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Blog
@@ -96,31 +96,31 @@ const Footer = () => {
               Contact
             </p>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Advertising
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Press
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Email
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Partners
             </a>
             <a
-              href="#"
+              href="https://ciphergirl.github.io"
               class="flex mb-3 text-sm font-medium text-gray-500 transition hover:text-gray-700 md:mb-2 hover:text-primary"
             >
               Jobs

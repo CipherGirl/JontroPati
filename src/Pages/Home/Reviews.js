@@ -1,23 +1,8 @@
-import {
-  Avatar,
-  Card,
-  Center,
-  Grid,
-  Image,
-  Loader,
-  ScrollArea,
-  Text,
-} from '@mantine/core';
+import { Avatar, Grid, Loader, ScrollArea } from '@mantine/core';
 import { useQuery } from 'react-query';
 
 export const Reviews = () => {
-  const {
-    data: reviews,
-    isLoading,
-    refetch,
-    status,
-    isIdle,
-  } = useQuery(['reviews'], () =>
+  const { data: reviews, isLoading } = useQuery(['reviews'], () =>
     fetch(`${process.env.REACT_APP_BASE_URL}/review/`, {
       method: 'GET',
       headers: {
@@ -25,7 +10,6 @@ export const Reviews = () => {
       },
     }).then((res) => res.json())
   );
-  const threeItems = [1, 2, 3];
 
   if (isLoading) {
     return (

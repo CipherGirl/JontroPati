@@ -1,9 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
-
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useEffect, useState } from 'react';
 import useFirebase from '../../hooks/useFireBase';
-import { Center, Loader } from '@mantine/core';
+import { Loader } from '@mantine/core';
 import useAdmin from '../../hooks/useAdmin';
 
 const RequireAdmin = ({ children }) => {

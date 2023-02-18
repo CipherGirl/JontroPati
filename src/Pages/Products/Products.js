@@ -4,11 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Products = () => {
   const navigate = useNavigate();
-  const {
-    data: products,
-    isLoading,
-    refetch,
-  } = useQuery('allProducts', () =>
+  const { data: products, isLoading } = useQuery('allProducts', () =>
     fetch(`${process.env.REACT_APP_BASE_URL}/products`).then((res) =>
       res.json()
     )
@@ -53,7 +49,11 @@ export const Products = () => {
                   <td>{product.minimumOrder}</td>
                   <td>{product.quantity}</td>
                   <td>
-                    <img className="max-w-[30px] h-auto" src={product.image} />
+                    <img
+                      className="max-w-[30px] h-auto"
+                      src={product.image}
+                      alt="product"
+                    />
                   </td>
                   <td>
                     <Button

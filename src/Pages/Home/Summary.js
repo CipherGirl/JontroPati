@@ -1,8 +1,6 @@
-import { useSetState } from '@mantine/hooks';
-import { useEffect, useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 import handleViewport from 'react-in-viewport';
 import CountUp from 'react-countup';
-import { Text } from '@mantine/core';
 import { ReactComponent as Customer } from '../../Assets/customer.svg';
 import { ReactComponent as Revenue } from '../../Assets/growth.svg';
 import { ReactComponent as Rating } from '../../Assets/review.svg';

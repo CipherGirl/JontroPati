@@ -1,5 +1,4 @@
 import React from 'react';
-import { Center } from '@mantine/core';
 
 import { useLocation } from 'react-router-dom';
 
