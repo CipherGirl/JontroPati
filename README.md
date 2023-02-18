@@ -2,7 +2,7 @@
 
 This is JontroPati, a manufacturer website of hand/electric tools and many more. We are tursted by thousands customers.
 
-## Project Live Url: <https://jontropati.firebaseapp.com/>
+## Project Live Url: <https://jontropati-5e95d.web.app/>
 
 ## Features
 
@@ -36,10 +36,10 @@ This is JontroPati, a manufacturer website of hand/electric tools and many more.
 - react-query
 - react-router-dom
 
-### Client Side
+### Client Side (Hosted by Firebase)
 
-- Link: <https://github.com/CipherGirl/JontroPati-Client>
+- Code Link: <https://github.com/CipherGirl/JontroPati-Client>
 
-### Server Side
+### Server Side (Hosted by Vercel)
 
-- Link: <https://github.com/CipherGirl/JontroPati-Server>
+- Code Link: <https://github.com/CipherGirl/JontroPati-Server>
